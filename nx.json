@@ -1,0 +1,93 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "myshell-run",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "nx/tasks-runners/default",
+      "options": {
+        "useDaemonProcess": false,
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "build-storybook"
+        ]
+      }
+    }
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "local-publish": {
+      "dependsOn": ["^local-publish"],
+      "inputs": ["production", "^production"],
+      "options": {
+        "bundleSuppressWarnCodes": ["UNRESOLVED_IMPORT"],
+        "externals": ["react/jsx-runtime", "react", "react-dom"]
+      }
+    },
+    "lint": {
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore"
+      ]
+    },
+    "test": {
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
+      "options": {
+        "codeCoverage": true
+      }
+    },
+    "build-storybook": {
+      "inputs": ["default", "^production", "!{projectRoot}/.storybook/**/*"]
+    },
+    "e2e": {
+      "inputs": ["default", "^production"]
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "production": [
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*"
+    ],
+    "sharedGlobals": ["{workspaceRoot}/babel.config.json"]
+  },
+  "workspaceLayout": {
+    "appsDir": "apps",
+    "libsDir": "libs"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "bundler": "webpack",
+        "babel": true
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "unitTestRunner": "jest"
+      },
+      "component": {
+        "style": "css"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "css",
+        "linter": "eslint"
+      }
+    }
+  }
+}

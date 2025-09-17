@@ -1,0 +1,50 @@
+{
+  "name": "my-mock-server",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/my-mock-server/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/apps/my-mock-server",
+        "main": "apps/my-mock-server/src/main.ts",
+        "tsConfig": "apps/my-mock-server/tsconfig.app.json",
+        "assets": ["apps/my-mock-server/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "apps/my-mock-server/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "my-mock-server:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "my-mock-server:build:development"
+        },
+        "production": {
+          "buildTarget": "my-mock-server:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/my-mock-server/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

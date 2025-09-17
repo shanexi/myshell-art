@@ -1,0 +1,39 @@
+name: PR check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    env:
+      # CYPRESS_INSTALL_BINARY: '0'
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: '1'
+      NX_DAEMON: 'false'
+
+    permissions:
+      contents: 'write'
+      pull-requests: 'write'
+      checks: 'write'
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7.33.7
+          run_install: false
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+          cache-dependency-path: 'pnpm-lock.yaml'
+
+      - run: ./scripts/ci.js --ci --pr
+
+      - uses: ArtiomTr/jest-coverage-report-action@v2
+        with:
+          package-manager: pnpm
+          skip-step: install

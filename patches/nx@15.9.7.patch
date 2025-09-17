@@ -1,0 +1,22 @@
+diff --git a/src/command-line/format.js b/src/command-line/format.js
+index 45f803b2f1dc2249bd8d54d861c8ffafb6c520f3..bcb52c5fc82b1c48c2e45db3f3da03997f65c5ed 100644
+--- a/src/command-line/format.js
++++ b/src/command-line/format.js
+@@ -14,7 +14,7 @@ const project_graph_1 = require("../project-graph/project-graph");
+ const affected_project_graph_1 = require("../project-graph/affected/affected-project-graph");
+ const configuration_1 = require("../config/configuration");
+ const chunkify_1 = require("../utils/chunkify");
+-const PRETTIER_PATH = require.resolve('prettier/bin-prettier');
++const PRETTIER_PATH = require.resolve('prettier-2/bin-prettier');const BOIME_PATH = require.resolve('@biomejs/biome/bin/biome');
+ function format(command, args) {
+     return tslib_1.__awaiter(this, void 0, void 0, function* () {
+         const { nxArgs } = (0, command_line_utils_1.splitArgsIntoNxArgsAndOverrides)(args, 'affected', { printWarnings: false }, (0, configuration_1.readNxJson)());
+@@ -106,7 +106,7 @@ function write(patterns) {
+             result[pattern.includes('.swcrc') ? 0 : 1].push(pattern);
+             return result;
+         }, [[], []]);
+-        (0, child_process_1.execSync)(`node "${PRETTIER_PATH}" --write --list-different ${regularPatterns.join(' ')}`, {
++        (0, child_process_1.execSync)(`node "${BOIME_PATH}" format --write ${regularPatterns.join(' ')}`, {
+             stdio: [0, 1, 2],
+         });
+         if (swcrcPatterns.length > 0) {

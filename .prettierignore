@@ -1,0 +1,11 @@
+# Add files here to ignore them from prettier formatting
+pnpm-lock.yaml
+/dist
+/coverage
+
+**/*.typegen.ts
+
+/libs/biz/ui/src/components/message-list/**/*
+/libs/ui-primitives/src/remark/hast-util-to-jsx-runtime/**/*
+/apps/about-chat/**/*.md
+/.yalc

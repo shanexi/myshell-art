@@ -1,0 +1,10 @@
+node_modules
+
+**/*.typegen.ts
+**/.wrangler/**/*
+libs/archive/automata/src/lib
+
+libs/biz/ui/src/components/message-list/
+libs/common/ui/src/remark/hast-util-to-jsx-runtime/
+
+apps/about-chat/*.md

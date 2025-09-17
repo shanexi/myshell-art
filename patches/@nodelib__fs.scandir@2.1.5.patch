@@ -1,0 +1,14 @@
+diff --git a/out/constants.js b/out/constants.js
+index 7e3d4411f751e190be8794b687e9fa60ef5fae06..cec27028abfd166f7bee50cea01e67b4557325c5 100644
+--- a/out/constants.js
++++ b/out/constants.js
+@@ -1,7 +1,8 @@
+ "use strict";
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.IS_SUPPORT_READDIR_WITH_FILE_TYPES = void 0;
+-const NODE_PROCESS_VERSION_PARTS = process.versions.node.split('.');
++// FIX: cloudflare worker's process.versions = {}, set a default value
++const NODE_PROCESS_VERSION_PARTS = (process.versions.node || '18.20.4').split('.');
+ if (NODE_PROCESS_VERSION_PARTS[0] === undefined || NODE_PROCESS_VERSION_PARTS[1] === undefined) {
+     throw new Error(`Unexpected behavior. The 'process.versions.node' variable has invalid value: ${process.versions.node}`);
+ }

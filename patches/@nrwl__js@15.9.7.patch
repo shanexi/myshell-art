@@ -1,0 +1,13 @@
+diff --git a/src/generators/init/init.js b/src/generators/init/init.js
+index 8f12cf20be8ba0c1fd7e278aca7cf04a6c58e8a9..7db88bc34def0463fc87c09b8c44392c3cce8704 100644
+--- a/src/generators/init/init.js
++++ b/src/generators/init/init.js
+@@ -50,7 +50,7 @@ function initGenerator(tree, schema) {
+             ? (0, devkit_1.addDependenciesToPackageJson)(tree, {}, devDependencies)
+             : () => { };
+         tasks.push(installTask);
+-        (0, devkit_1.ensurePackage)('prettier', versions_1.prettierVersion);
++        (0, devkit_1.ensurePackage)('prettier-2', versions_1.prettierVersion);
+         if (!schema.skipFormat) {
+             yield (0, devkit_1.formatFiles)(tree);
+         }

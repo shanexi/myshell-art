@@ -1,0 +1,226 @@
+@plugin "@tailwindcss/typography";
+@plugin "tailwindcss-react-aria-components";
+@plugin 'tailwindcss-animate';
+
+@plugin "daisyui";
+
+/* 先注释 根据 prefers-color-scheme 控制 */
+@plugin "daisyui" {
+  /* themes: light --default, dark --prefersdark; */
+}
+
+/* @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *)); */
+
+/* font 没有被转换成功 手动添加 */
+@layer components {
+  .display-lg {
+    line-height: 36px;
+    font-size: 28px;
+    font-weight: 500;
+  }
+
+  .display-xs {
+    line-height: 26px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .display-md-emphasized {
+    /* Display/md/Emphasized */
+    /* font-family: 'PP Telegraf'; */
+    /* font-family: "Space Grotesk"; */
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    /* 133.333% */
+  }
+
+  .display-sm-semibold {
+    /* Display/sm/Semibold */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 590;
+    line-height: 28px;
+  }
+
+  .heading-h2 {
+    /* Heading/h4 */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+  }
+
+  .heading-h4 {
+    /* Heading/h4 */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 510;
+    line-height: 24px;
+  }
+
+  .text-sm-medium {
+    /* Text/sm/Medium */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 14px;
+    font-style: normal;
+    /* font-weight: 510; */
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .text-sm-regular {
+    /* Text/sm/Regular */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+  }
+
+  .text-lg-medium {
+    /* Text/lg/Medium */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 510;
+    line-height: 24px;
+  }
+
+  .text-lg-regular {
+    /* Text/lg/Regular */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .description-lg-regular {
+    /* Description/lg/Regular */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px;
+  }
+
+  .description-lg-medium {
+    /* Description/lg/Regular */
+    /* font-family: 'SF Pro'; */
+    /* font-family: "Inter"; */
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  .special-20 {
+    /* 20px/Special */
+    /* font-family: 'PP Telegraf'; */
+    /* font-family: "Space Grotesk"; */
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 28px;
+  }
+
+  .body-lg-regular {
+    /* Body/lg/Regular */
+    /* font-family: "Mona Sans"; */
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+
+/* https://github.com/paulcollett/react-masonry-css */
+@layer components {
+  .my-masonry-grid {
+    display: flex;
+    margin-left: -8px;
+    /* gutter size offset */
+    width: auto;
+  }
+
+  .my-masonry-grid_column {
+    padding-left: 8px;
+    /* gutter size */
+    background-clip: padding-box;
+  }
+
+  /* Style your items */
+  .my-masonry-grid_column > div {
+    /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 4px;
+  }
+}
+
+/* https://react-spectrum.adobe.com/react-aria/Button.html#styling */
+@layer components {
+  .x-custom-react-aria-Button[data-pressed] {
+    background: transparent !important;
+  }
+}
+
+/* 手动修改 svg 样式 */
+@layer components {
+  .svg-fill-white {
+    svg {
+      fill: white;
+      transition: fill 0.3s ease;
+    }
+  }
+}
+
+@layer components {
+  /* https://css-loaders.com/spinner/ #3 */
+  /* HTML: <div class="loader"></div> */
+  .loader {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    padding: 1.5px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--color-Cr-text-default-v2);
+    --_m: conic-gradient(#0000 10%, var(--color-Cr-text-default-v2)),
+      linear-gradient(var(--color-Cr-text-default-v2) 0 0) content-box;
+    -webkit-mask: var(--_m);
+    mask: var(--_m);
+    -webkit-mask-composite: source-out;
+    mask-composite: subtract;
+    animation: l3 1s infinite linear;
+  }
+
+  @keyframes l3 {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+}
+
+@theme {
+  --shadow-button-basic: 0px 1px 0px 0px
+    var(--color-shadows-button-basic-light, rgba(0, 0, 0, 0.05));
+
+  --shadow-background-default: 0px 1px 2px 0px
+    var(--color-shadows-surface-default-light, rgba(0, 0, 0, 0.05));
+}
+
+@import "./design-system-v1.css";
+@import "./design-system-v2.new.css";

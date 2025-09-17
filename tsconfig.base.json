@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["es2022", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@myshell-run/my-nx-plugins": ["libs/my-nx-plugins/src/index.ts"],
+      "@myshell-run/tailwind-cfg/styles-with-no-source.css": [
+        "libs/tailwind-cfg/styles-with-no-source.css"
+      ],
+      "@myshell-run/tailwind-cfg/styles.css": ["libs/tailwind-cfg/styles.css"]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx"
+  },
+  "exclude": ["node_modules", "tmp"]
+}

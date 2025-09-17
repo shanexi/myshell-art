@@ -1,0 +1,14 @@
+diff --git a/index.js b/index.js
+index 75a972b2a88f326dc851cdd67a0528a8894ffdc4..17a850cc2a6b6d3087e9b7b6b137b3b0bc2abab6 100644
+--- a/index.js
++++ b/index.js
+@@ -38099,6 +38099,9 @@ var require_load_plugins = __commonJS2({
+       if (!plugins2) {
+         plugins2 = [];
+       }
++      // nx prettier-v2 fix not support mjs
++      plugins2 = plugins2.filter((plugin) => plugin !== 'prettier-plugin-tailwindcss')
++      
+       if (pluginSearchDirs === false) {
+         pluginSearchDirs = [];
+       } else {

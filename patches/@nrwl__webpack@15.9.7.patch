@@ -1,0 +1,12 @@
+diff --git a/src/executors/dev-server/lib/get-dev-server-config.js b/src/executors/dev-server/lib/get-dev-server-config.js
+index 0ddfc5d1566d9956af373b9d4a7540722d139c4e..2da153b3c665a1f8106a73910d4b907a6c0698f2 100644
+--- a/src/executors/dev-server/lib/get-dev-server-config.js
++++ b/src/executors/dev-server/lib/get-dev-server-config.js
+@@ -55,6 +55,7 @@ function getDevServerPartial(root, options, buildOptions) {
+             overlay: {
+                 errors: !(scriptsOptimization || stylesOptimization),
+                 warnings: false,
++                runtimeErrors: false  // FIX ResizeObserver loop completed with undelivered notifications. https://github.com/petyosi/react-virtuoso/issues/1049
+             },
+         },
+         liveReload: options.hmr ? false : options.liveReload,
